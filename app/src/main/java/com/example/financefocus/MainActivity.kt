@@ -1,12 +1,20 @@
-package com.seuapp.financefocus
+package com.example.financefocus
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -15,8 +23,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.financefocus.R
 import com.seuapp.financefocus.ui.theme.FinanceFocusTheme
 
 class MainActivity : ComponentActivity() {
@@ -27,13 +35,7 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = Color(0xFF0052CC)
-
-
                 ) {
-                    LoginScreen(
-                        navController = rememberNavController(),
-                        onLoginClick = {},
-                        onForgotPasswordClick = {})
                     val navController = rememberNavController()
                     AppNavigation(navController = navController)
                 }
@@ -45,8 +47,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun StartScreen(
-    onLoginClick: () -> Unit,
-    onRegisterClick: () -> Unit
+    navController: NavController?,
 ) {
     Column(
         modifier = Modifier
@@ -64,7 +65,9 @@ fun StartScreen(
         )
 
         Button(
-            onClick = onLoginClick,
+            onClick = {
+                navController?.navigate(Routes.LOGIN)
+            },
             shape = RoundedCornerShape(16.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.White,
@@ -78,7 +81,9 @@ fun StartScreen(
         }
 
         Button(
-            onClick = onRegisterClick,
+            onClick = {
+                navController?.navigate(Routes.CADASTRO)
+            },
             shape = RoundedCornerShape(16.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.White,
@@ -102,8 +107,7 @@ fun StartScreenPreview() {
             color = Color(0xFF0052CC)
         ) {
             StartScreen(
-                onLoginClick = {},
-                onRegisterClick = {}
+                navController = null
             )
         }
     }

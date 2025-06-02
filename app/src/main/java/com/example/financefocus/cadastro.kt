@@ -1,4 +1,4 @@
-package com.example.financefocus.screens
+package com.example.financefocus
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -17,8 +17,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.financefocus.R
-import com.example.financefocus.Routes
 
 @Composable
 fun CadastroScreen(navController: NavController) {
@@ -126,7 +124,7 @@ fun CadastroScreen(navController: NavController) {
             shape = RoundedCornerShape(16.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.White,
-                contentColor = Color(0xFF0052CC)
+                contentColor = Color(0xFF000000)
             ),
             modifier = Modifier
                 .fillMaxWidth()
